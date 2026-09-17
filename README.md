@@ -4,14 +4,15 @@ Client-side skills and starter frames for Recon's MCP server.
 
 Recon's MCP endpoint, `https://reconrun.co/mcp`, exposes up to two tools to any
 client that holds an MCP key (`rmcp_live_…`). The second, `think_with_recon`,
-is listed only after the organization's owner turns it on in Recon under
-**Keys → Model clients**; until then the server is exactly what it was before
-the tool existed, and nothing in this repository applies:
+is listed only for keys that follow one or more shelves, chosen when the key
+is minted; a key that follows none gets exactly the server that existed before
+the tool did, and nothing in this repository applies to it. `ask_recon` can be
+turned off per key too, so an assistant can be given one, the other, or both:
 
 | Tool | You send | You get back |
 |---|---|---|
 | `ask_recon` | a question | an answer from the organization's published pages, citing them |
-| `think_with_recon` | the task and your current reasoning | the pages the organization marked as its thinking frame, whole and unedited, plus where the reasoning departs from them |
+| `think_with_recon` | the task and the approach you intend to take | the pages of the shelves the key follows, whole and unedited, plus where that approach departs from them |
 
 The server side of that lives in the backend. This repository holds the client
 side: a skill that tells a model when to call `think_with_recon` and what to do
@@ -32,11 +33,11 @@ examples/frames/reviewing-code.md
 
 ## Recon injects nothing on its own
 
-A frame exists only because a person marked a page and published it. Recon
-does not infer one, does not pick pages by relevance for this tool, and does
-not write a line of the frame text. `think_with_recon` reads the published
-pages flagged as frames, in precedence order, whole, and returns them exactly
-as written. The check that follows compares the reasoning against those pages
+A frame exists only because a person chose a shelf for it when setting up a
+key, and published that shelf's pages. Recon does not infer one, does not pick
+pages by relevance for this tool, and does not write a line of the frame text.
+`think_with_recon` reads every published page of the shelves the key follows,
+in precedence order, whole, and returns them exactly as written. The check that follows compares the intended approach against those pages
 and against nothing else.
 
 That is what makes a frame worth obeying. When a model follows it, it is
@@ -45,14 +46,26 @@ something a model guessed the organization would want. When no page is marked,
 the tool says so in one line and the model reasons on its own. An unpublished
 frame is not a frame.
 
-## Marking a page as a frame
+## Choosing what a key can do
 
-In Recon, select the page and press **Frame** in the bar above the editor, or
-choose **Use as frame** from the page's menu in the explorer. Then publish. A
-frame reaches models only once it is published, like every other page.
+In Recon, go to **Keys → Model clients** and mint an MCP key. The dialog asks
+what the key reaches, and then what it may do with it, as two independent
+choices: **answer questions about your work**, and **follow the way your team
+works**. Tick the second and you pick the shelves it should follow.
+
+Either can be off. Answering alone is what every key did before this existed;
+following alone suits an assistant that should work the way the team works
+without being able to read the organization's pages back on request. Both can
+be changed later from **Edit** on the key's row — the only part of a key
+that may change after minting, and it can never widen what the key reads.
+
+The shelf is the unit, not the page. Every published page in a frame shelf is
+part of the frame, so put framing pages in their own shelf and keep reference
+material elsewhere — the split you make in Recon is the split a model sees.
+`ask_recon` is unaffected and still reads every shelf in the key's scope.
 
 A frame is read whole, so write it to be read whole: what the organization
-believes and why, in the order it should be weighed. The page's
+believes and why, in the order it should be weighed. A page's
 *When to use this* line is not a gate for `think_with_recon` (there is no
 routing to trigger), but it still tells a reader what the page is for and still
 routes the same page on the enhance path, so keep it.

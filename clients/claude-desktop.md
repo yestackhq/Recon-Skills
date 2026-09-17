@@ -32,7 +32,7 @@ are offered differs. The same steps apply to Claude on the web.
 
 Claude Desktop reads the instructions an MCP server publishes about itself.
 Recon's tell the model to call `think_with_recon` with the task and its
-current reasoning before any substantive answer, and to reason on its own and
+intended approach before any substantive answer, and to proceed as usual and
 say so where no frame is published. A connected Claude Desktop therefore
 calls the tool with nothing else installed.
 
@@ -49,9 +49,8 @@ carries it.
 
 ## Confirm
 
-The connector shows as connected under Settings → Connectors. Once the
-organization's owner has turned `think_with_recon` on in Recon under Keys →
-Model clients (it is off by default, and off means the connector offers
-`ask_recon` alone), ask something that needs judgment in a chat; Claude should
-call `think_with_recon` before it answers. If no frame is published for the key yet, the answer says in one
+The connector shows as connected under Settings → Connectors. If the key
+follows at least one shelf (set under **Edit** on its row in Recon — with
+none, the connector offers `ask_recon` alone), ask something that needs
+judgment in a chat; Claude should call `think_with_recon` before it answers. If no frame is published for the key yet, the answer says in one
 line that it was not frame-governed, which is the tool working.

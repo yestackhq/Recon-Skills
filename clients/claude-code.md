@@ -34,9 +34,10 @@ travels with the repository, the key does not.
 ## Confirm
 
 Run `/mcp` inside Claude Code. Recon should show as connected with `ask_recon`,
-and with `think_with_recon` once the organization's owner has turned it on in
-Recon under Keys → Model clients. If only `ask_recon` shows, that switch is off;
-nothing on this machine is wrong.
+and with `think_with_recon` when the key follows at least one shelf. If only
+`ask_recon` shows, the key follows nothing — set that from **Edit** on the
+key's row in Recon; nothing on this machine is wrong. A key can also be set up
+to do only one of the two, in which case only that tool appears.
 
 Then ask something that needs judgment, not a fact. Claude should call
 `think_with_recon` before answering; the call is visible in the transcript.

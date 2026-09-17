@@ -19,9 +19,10 @@ Add Recon to Cursor's MCP config, then reload the window.
 
 Replace `YOUR_MCP_KEY` with the key you copied when you minted it. Open
 Settings, MCP and confirm Recon shows as connected with `ask_recon`, and with
-`think_with_recon` once the organization's owner has turned it on in Recon
-under Keys → Model clients. If only `ask_recon` shows, that switch is off;
-reload the window after it is turned on.
+`think_with_recon` when the key follows at least one shelf. If only
+`ask_recon` shows, the key follows nothing — set that from **Edit** on the
+key's row in Recon, then reload the window. A key can also be set up to do only
+one of the two, in which case only that tool appears.
 
 `~/.cursor/mcp.json` is per machine. Cursor also reads `.cursor/mcp.json`
 inside a project; do not put the key there. That file sits in the repository,
@@ -55,7 +56,7 @@ alwaysApply: true
 
 Recon holds the organization's own thinking frame: pages its people wrote,
 marked as how they reason, and published. Over MCP it hands those pages to
-you whole and checks your reasoning against them. No line of the frame was
+you whole and checks your intended approach against them. No line of the frame was
 written by a model; every page in it was chosen by a person.
 
 ## The contract
@@ -63,11 +64,10 @@ written by a model; every page in it was chosen by a person.
 Before any substantive answer, call `think_with_recon` with:
 
 - `task` — one line: what you are about to answer or do.
-- `reasoning` — your current line of thought, in your own words. Write it as
-  you are actually thinking it, not as a tidy summary; the check reads it.
-  Under about twenty characters there is nothing to check, and the reply's
-  `<recon-check>` says so: reason inside the frame it returned, then call
-  again with your reasoning.
+- `approach` — the approach you intend to take: what you are going to do, and
+  why. A sentence or two is enough. This is a statement of intent written for
+  someone else to read, not a transcript of your thinking, and nothing here
+  asks you to expose reasoning you would not otherwise put in your answer.
 
 Call it again when the task changes materially: a new question, a change of
 direction, a decision that was not visible at the start. One call at the top
@@ -87,7 +87,7 @@ The reply has three parts:
     </recon-frame>
 
     <recon-check>
-    - one bullet per place your reasoning departs from a page, quoting the page line
+    - one bullet per place your approach departs from a page, quoting the page line
     </recon-check>
 
     ---
@@ -117,8 +117,8 @@ and which from you.
 is the skip you asked for, and a failure name such as `timeout` means the model
 behind the check was unavailable; in both cases the frame above still applies
 in full. `skipped="context_budget"` under `<recon-frame pages="0">` is
-different: pages are marked as frames, but not one of them fit the budget, so
-none was delivered. Treat that as no frame. Reason on your own, and say the
+different: the key names frame shelves, but not one of their pages fit the
+budget, so none was delivered. Treat that as no frame. Reason on your own, and say the
 answer was not frame-governed, as the check's own sentence tells you to.
 
 ## When there is no frame
@@ -132,7 +132,7 @@ line that the answer was not frame-governed. Do not guess at what the
 organization would want. An unpublished frame is not a frame.
 
 When pages are published but none is marked as a frame, one more sentence
-follows the one above: `Mark a page as a frame in Recon to change that.` It
+follows the one above: `Its thinking frames have nothing published yet. Publish them in Recon to change that.` It
 tells the person how to fix it and changes nothing for you.
 
 ## Facts and thinking are different tools
@@ -147,7 +147,7 @@ call both.
 
 Greetings and small talk. Syntax and API lookups. Formatting, transcription
 or translation of text you were given. Anything with no judgment in it: if you
-could not write a line of reasoning about it, there is nothing for a frame to
+could not state an approach for it, there is nothing for a page to
 govern.
 ```
 
