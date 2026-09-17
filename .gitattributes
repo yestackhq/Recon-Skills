@@ -1,0 +1,4 @@
+# Skill and rule files are copied verbatim into other tools on other
+# machines (~/.claude/skills, .cursor/rules), so they must not carry the
+# line endings of whichever machine last committed them.
+* text=auto eol=lf
