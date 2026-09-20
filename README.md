@@ -2,22 +2,29 @@
 
 Client-side skills and starter frames for Recon's MCP server.
 
-Recon's MCP endpoint, `https://reconrun.co/mcp`, exposes up to two tools to any
-client that holds an MCP key (`rmcp_live_…`). The second, `think_with_recon`,
-is listed only for keys that follow one or more shelves, chosen when the key
-is minted; a key that follows none gets exactly the server that existed before
-the tool did, and nothing in this repository applies to it. `ask_recon` can be
-turned off per key too, so an assistant can be given one, the other, or both:
+Recon's MCP endpoint, `https://reconrun.co/mcp`, exposes up to three tools to any
+client that holds an MCP key (`rmcp_live_…`). `think_with_recon` and
+`verify_with_recon` are listed only for keys that follow one or more shelves,
+chosen when the key is minted; a key that follows none gets exactly the server
+that existed before they did, and nothing in this repository applies to it.
+`ask_recon` can be turned off per key too, so an assistant can be given
+answering, framing, or both:
 
 | Tool | You send | You get back |
 |---|---|---|
 | `ask_recon` | a question | an answer from the organization's published pages, citing them |
 | `think_with_recon` | the task and the approach you intend to take | the pages of the shelves the key follows, whole and unedited, plus where that approach departs from them |
+| `verify_with_recon` | the task and the answer you are about to give | where the finished answer still departs from those pages, plus a check of every quote in it against the page text itself |
+
+The last row is the one that produces a fact rather than a reading. The
+departures are a model's judgment and can be argued with; the citation check is
+a string comparison against the page as published, so "this answer quotes a line
+no page contains" is something anyone can confirm for themselves.
 
 The server side of that lives in the backend. This repository holds the client
-side: a skill that tells a model when to call `think_with_recon` and what to do
-with the answer, the setup for each client, and example frame pages a person
-may choose to publish.
+side: a skill that tells a model when to call these tools and what to do with
+what comes back, the setup for each client, and example frame pages a person may
+choose to publish.
 
 ## Layout
 
@@ -37,8 +44,9 @@ A frame exists only because a person chose a shelf for it when setting up a
 key, and published that shelf's pages. Recon does not infer one, does not pick
 pages by relevance for this tool, and does not write a line of the frame text.
 `think_with_recon` reads every published page of the shelves the key follows,
-in precedence order, whole, and returns them exactly as written. The check that follows compares the intended approach against those pages
-and against nothing else.
+in precedence order, whole, and returns them exactly as written. The check that
+follows compares the intended approach against those pages and against nothing
+else, and `verify_with_recon` compares the finished answer the same way.
 
 That is what makes a frame worth obeying. When a model follows it, it is
 following something a named person chose over the general answer, not
@@ -89,7 +97,9 @@ and the Claude Desktop project instructions carry, so it is the one place the
 wording lives; change it there and copy it out.
 
 The server's own MCP instructions already tell a client to call
-`think_with_recon` before a substantive answer. The skill adds what the server
-cannot say from its side: what "the frame binds" means in practice, how to
-attribute a framed answer, and what to do when the check is skipped or no
-frame is published.
+`think_with_recon` before a substantive answer and `verify_with_recon` before
+delivering it. The skill adds what the server cannot say from its side: what
+"the frame binds" means in practice, how to attribute a framed answer, what to do
+when the check is skipped or no frame is published, and — the one a model will
+not infer — that a quote Recon could not find in any page must be fixed or
+dropped, never delivered.

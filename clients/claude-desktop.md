@@ -32,14 +32,16 @@ are offered differs. The same steps apply to Claude on the web.
 
 Claude Desktop reads the instructions an MCP server publishes about itself.
 Recon's tell the model to call `think_with_recon` with the task and its
-intended approach before any substantive answer, and to proceed as usual and
-say so where no frame is published. A connected Claude Desktop therefore
-calls the tool with nothing else installed.
+intended approach before any substantive answer, to call `verify_with_recon`
+with the answer before delivering it, and to proceed as usual and say so where
+no frame is published. A connected Claude Desktop therefore calls the tools with
+nothing else installed.
 
-What the server cannot carry from its side is the rest of the discipline:
-that the frame outranks the model's own judgment where it speaks, that every
-departure in `<recon-check>` is applied before answering, how a framed answer
-is attributed, and what a skipped check means. That text lives in
+What the server cannot carry from its side is the rest of the discipline: that
+the frame outranks the model's own judgment where it speaks, that every
+departure is applied before answering, how a framed answer is attributed, what a
+skipped check means, and that a quote Recon could not find in any page is fixed
+or dropped rather than delivered. That text lives in
 `skills/think-with-recon/SKILL.md`.
 
 Claude Desktop has no skill file to install. The place for that text is a
@@ -52,5 +54,7 @@ carries it.
 The connector shows as connected under Settings → Connectors. If the key
 follows at least one shelf (set under **Edit** on its row in Recon — with
 none, the connector offers `ask_recon` alone), ask something that needs
-judgment in a chat; Claude should call `think_with_recon` before it answers. If no frame is published for the key yet, the answer says in one
-line that it was not frame-governed, which is the tool working.
+judgment in a chat; Claude should call `think_with_recon` before it answers and
+`verify_with_recon` before it delivers. If no frame is published for the key
+yet, the answer says in one line that it was not frame-governed, which is the
+tool working.

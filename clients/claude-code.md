@@ -34,15 +34,18 @@ travels with the repository, the key does not.
 ## Confirm
 
 Run `/mcp` inside Claude Code. Recon should show as connected with `ask_recon`,
-and with `think_with_recon` when the key follows at least one shelf. If only
-`ask_recon` shows, the key follows nothing — set that from **Edit** on the
-key's row in Recon; nothing on this machine is wrong. A key can also be set up
-to do only one of the two, in which case only that tool appears.
+and with `think_with_recon` and `verify_with_recon` when the key follows at
+least one shelf. Those two arrive together — there is no separate switch for
+verifying. If only `ask_recon` shows, the key follows nothing: set that from
+**Edit** on the key's row in Recon; nothing on this machine is wrong. A key can
+also be set up to answer or to follow but not both, in which case only the
+matching tools appear.
 
 Then ask something that needs judgment, not a fact. Claude should call
-`think_with_recon` before answering; the call is visible in the transcript.
-If no frame is published for the key yet, the answer should say in one line
-that it was not frame-governed. That is the tool working, not failing.
+`think_with_recon` before answering and `verify_with_recon` before delivering;
+both calls are visible in the transcript. If no frame is published for the key
+yet, the answer should say in one line that it was not frame-governed. That is
+the tool working, not failing.
 
 If `/mcp` shows Recon as failed with a 401, the key is wrong, revoked, or is
 an API key (`recon_…`) rather than an MCP key (`rmcp_…`). Recon's error
