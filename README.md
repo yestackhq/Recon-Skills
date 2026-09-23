@@ -13,7 +13,7 @@ answering, framing, or both:
 | Tool | You send | You get back |
 |---|---|---|
 | `ask_recon` | a question | an answer from the organization's published pages, citing them |
-| `think_with_recon` | the task and the approach you intend to take | the pages of the shelves the key follows, whole and unedited, plus where that approach departs from them |
+| `think_with_recon` | the task and the approach you intend to take | a concise comparison with concrete corrections and page attribution |
 | `verify_with_recon` | the task and the answer you are about to give | where the finished answer still departs from those pages, plus a check of every quote in it against the page text itself |
 
 The last row is the one that produces a fact rather than a reading. The
@@ -44,9 +44,10 @@ A frame exists only because a person chose a shelf for it when setting up a
 key, and published that shelf's pages. Recon does not infer one, does not pick
 pages by relevance for this tool, and does not write a line of the frame text.
 `think_with_recon` reads every published page of the shelves the key follows,
-in precedence order, whole, and returns them exactly as written. The check that
-follows compares the intended approach against those pages and against nothing
-else, and `verify_with_recon` compares the finished answer the same way.
+in precedence order, whole, inside Recon. It compares the intended approach
+against those pages and returns findings with attribution, without sending the
+page bodies to the client. `verify_with_recon` checks the finished answer in the
+same way and compares any attributed quotes against the stored text.
 
 That is what makes a frame worth obeying. When a model follows it, it is
 following something a named person chose over the general answer, not
@@ -69,10 +70,11 @@ that may change after minting, and it can never widen what the key reads.
 
 The shelf is the unit, not the page. Every published page in a frame shelf is
 part of the frame, so put framing pages in their own shelf and keep reference
-material elsewhere — the split you make in Recon is the split a model sees.
+material elsewhere — the split you make in Recon is the split its comparison
+model reads.
 `ask_recon` is unaffected and still reads every shelf in the key's scope.
 
-A frame is read whole, so write it to be read whole: what the organization
+A frame is read whole inside Recon, so write it to be read whole: what the organization
 believes and why, in the order it should be weighed. A page's
 *When to use this* line is not a gate for `think_with_recon` (there is no
 routing to trigger), but it still tells a reader what the page is for and still
@@ -99,7 +101,6 @@ wording lives; change it there and copy it out.
 The server's own MCP instructions already tell a client to call
 `think_with_recon` before a substantive answer and `verify_with_recon` before
 delivering it. The skill adds what the server cannot say from its side: what
-"the frame binds" means in practice, how to attribute a framed answer, what to do
-when the check is skipped or no frame is published, and — the one a model will
-not infer — that a quote Recon could not find in any page must be fixed or
-dropped, never delivered.
+how to act on a departure, how to attribute a framed answer, what to do when
+the check fails or no frame is published, and that a quote Recon could not find
+in any page must be fixed or dropped before delivery.
