@@ -1,8 +1,10 @@
 # ChatGPT
 
-Checked 2026-09-17. This page describes what ChatGPT's connector settings can
-do today, and it is short because the answer is: Recon cannot be connected
-from ChatGPT yet. It says why, and what would have to change.
+Checked 2026-09-17; the verdict below was overtaken on 2026-09-23. The page
+described what ChatGPT's connector settings can do and concluded that Recon
+could not be connected from ChatGPT. Option 1 under *What Recon would need*
+has since been built — see **Where this now stands** at the foot of the page
+before relying on anything above it.
 
 ## What ChatGPT accepts
 
@@ -68,9 +70,34 @@ One of two things, both of them Recon-side work:
    rejecting a connector that carried a key in its URL as "not safe". Even
    built, it might not be accepted.
 
-Neither exists as of the date above. Until one does, ChatGPT is not a
-supported client, and this page says so rather than describing a setup that
-does not work.
+## Where this now stands
+
+Option 1 was built on 2026-09-23. Recon serves OAuth discovery at
+`/.well-known/oauth-protected-resource/mcp/chatgpt/<key-id>` and authenticates
+the connector against Clerk, intersecting the selected key's shelves and tool
+settings with the signed-in member's own project access. An admin publishes
+one URL to the workspace; each member then connects their own Recon account.
+The header-authenticated `/mcp` endpoint is unchanged and still what every
+other client on this page uses.
+
+Two things are true at once, and the second is why this section is not yet a
+setup guide:
+
+- The route exists in `feat/think-with-recon` and its unit tests pass.
+- **It has not been deployed, and no one has connected ChatGPT to it.** The
+  claim in the issue cited below — that ChatGPT may reject a connector it
+  considers unsafe — was about the URL-as-secret approach, not this one, but
+  nothing here has been checked against ChatGPT itself.
+
+So treat ChatGPT as unverified rather than unsupported. Before writing the
+click-path into this page, deploy the branch, confirm the
+`/.well-known/...` path reaches the API through the public proxy, and connect
+one real workspace.
+
+When it does connect, expect the same behaviour the other clients describe:
+`ask_recon` for factual questions, and `think_with_recon` before a judgment
+call with `verify_with_recon` on the draft before it is delivered. The last
+two arrive together whenever the key follows at least one shelf.
 
 ## Sources
 
