@@ -37,6 +37,16 @@ the complete frame.
 Call `think_with_recon` again when the task or your approach changes materially.
 One call at the start does not cover a new decision later in the conversation.
 
+## Then answer what the user asked
+
+Recon's replies are for you. Once your approach is checked, answer the user's
+original request with the findings applied: the plan, note, code or decision
+they asked for. The frame shapes how you answer; it is not the answer. Do not
+hand the user the frame or Recon's findings instead, and do not paste Recon's
+reply unless they asked to see it. Name a page in the answer only where it
+changed, or conflicts with, something the user asked for, and put the rest in
+the `Framed by:` line.
+
 ## Before replying: send the exact draft
 
 Draft the answer you intend to give the user, including all quotes and a
