@@ -1,6 +1,6 @@
 ---
 name: think-with-recon
-description: Use before a substantive answer, plan, recommendation or decision when think_with_recon and verify_with_recon are available. Skip greetings, simple syntax lookups and tasks with no judgment.
+description: Use before any plan, recommendation, decision or other substantive answer when think_with_recon and verify_with_recon are available, including a plan the user dictated point by point, since whether it fits how the team works is what Recon checks. Skip greetings, small talk and simple lookups.
 ---
 
 # Think with Recon
@@ -50,7 +50,10 @@ the `Framed by:` line.
 ## Before replying: send the exact draft
 
 Draft the answer you intend to give the user, including all quotes and a
-`Framed by: Title (v7)` line for each page whose practice shaped it. Before
+`Framed by: Title (v7)` line for each page whose practice shaped it. Write it
+in its final wording, with any style or formatting rules you follow already
+applied: the text you verify is the text you send. Rewording it after the
+check changes the answer, and the changed answer has not been checked. Before
 you deliver that draft, call `verify_with_recon` with:
 
 - `task`: what this answer is for.
@@ -64,7 +67,8 @@ you deliver that draft, call `verify_with_recon` with:
 
 Treat the returned verdict as a gate for this draft:
 
-- `clean`: deliver the checked draft. If you edit it, verify the edited version.
+- `clean`: deliver the checked draft word for word. If you change anything,
+  even the wording, verify the changed version first.
 - `departures`: revise each point Recon names, then send the revised *whole*
   draft back with the next round number and that reply as `previous`. Do this
   before replying to the user.
