@@ -46,12 +46,18 @@ you deliver that draft, call `verify_with_recon` with:
 - `task`: what this answer is for.
 - `answer`: the exact draft, with quotes and attribution intact.
 - `round`: `1` on the first pass.
+- `previous`: the last Recon reply, pasted as it came back — the
+  `think_with_recon` reply on round 1, the last `verify_with_recon` reply after
+  that. Each check is independent and remembers nothing; this is how it knows
+  what was already found, so a finding that still stands is not forgotten
+  between rounds.
 
 Treat the returned verdict as a gate for this draft:
 
 - `clean`: deliver the checked draft. If you edit it, verify the edited version.
 - `departures`: revise each point Recon names, then send the revised *whole*
-  draft back with the next round number. Do this before replying to the user.
+  draft back with the next round number and that reply as `previous`. Do this
+  before replying to the user.
 - `unresolved`: the check failed or reached its three-round limit. Tell the
   user which findings remain unresolved. Do not present the answer as verified.
 
