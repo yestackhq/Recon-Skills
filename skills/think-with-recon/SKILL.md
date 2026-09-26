@@ -58,8 +58,15 @@ Treat the returned verdict as a gate for this draft:
 - `departures`: revise each point Recon names, then send the revised *whole*
   draft back with the next round number and that reply as `previous`. Do this
   before replying to the user.
-- `unresolved`: the check failed or reached its three-round limit. Tell the
-  user which findings remain unresolved. Do not present the answer as verified.
+
+  If a finding is about something the user explicitly asked for, you may keep
+  it, because that is the user's call. Say so in the draft instead: name what
+  the page requires and that the answer departs from it at the user's request.
+  Then send that draft to the next round like any other. Deciding not to change
+  something is not a reason to stop checking.
+- `unresolved`: the check failed or reached its three-round limit. If the
+  reply's `Next:` line says to retry, retry. Otherwise tell the user which
+  findings remain unresolved, and do not present the answer as verified.
 
 The citation report is checked against published text. If Recon says a quote
 was not found, fix or remove it and verify the revised draft again. If a
@@ -74,4 +81,9 @@ answer the user would actually receive.
 
 Before any substantive reply, ask yourself: **Is this exact draft the one I
 sent to `verify_with_recon`, and did it return clean?** If the answer is no,
-call `verify_with_recon` now or disclose that the check remained unresolved.
+call `verify_with_recon` now. Deliver a draft without a clean check only when
+Recon's last reply on it was `unresolved` and did not ask for a retry, and then
+say which findings remain.
+
+Until a check returns clean, do not tell the user the draft was checked,
+verified or approved. Say what Recon found, or that the check is still going.
