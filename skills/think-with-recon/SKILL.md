@@ -24,10 +24,13 @@ Call `think_with_recon` before a substantive answer or decision. Send:
 - `assuming`: optional assumptions that may affect the decision.
 
 Read Recon's comparison. If it names a departure, change the approach as it
-directs, then continue. A page speaks for its author; attribute any team
-practice you apply by title and version. Recon may say the pages do not cover
-the matter. In that case use your ordinary judgment and do not invent a team
-position. If no frame is published, say the answer was not frame-governed.
+directs, then continue. Where the user ruled something out, look first for the
+way to meet the page that stays inside their limits; Recon often suggests one.
+A page speaks for its author; attribute any team practice you apply by title.
+The version belongs in the `Framed by:` line only, not in sentences the user
+reads, where it looks like a detail of the page. Recon may say the pages do not
+cover the matter. In that case use your ordinary judgment and do not invent a
+team position. If no frame is published, say the answer was not frame-governed.
 
 A failed or skipped check is not alignment. Retry `think_with_recon` when it
 asks for a fuller approach or reports a temporary failure. If Recon reports
@@ -46,6 +49,11 @@ hand the user the frame or Recon's findings instead, and do not paste Recon's
 reply unless they asked to see it. Name a page in the answer only where it
 changed, or conflicts with, something the user asked for, and put the rest in
 the `Framed by:` line.
+
+When you say what a page asks for, use its own terms. Do not narrow an ongoing
+practice into a single step, or add a requirement it does not state; the user
+may check the page, and a paraphrase that says more or less than it does is
+wrong even when it is not a quote.
 
 ## Before replying: send the exact draft
 
@@ -73,14 +81,19 @@ Treat the returned verdict as a gate for this draft:
   draft back with the next round number and that reply as `previous`. Do this
   before replying to the user.
 
-  If a finding is about something the user explicitly asked for, you may keep
-  it, because that is the user's call. Say so in the draft instead: name what
-  the page requires and that the answer departs from it at the user's request.
-  Then send that draft to the next round like any other. Deciding not to change
-  something is not a reason to stop checking.
+  If a finding is about something the user explicitly asked for, first look for
+  a way to meet the page without it, such as a step that does what the page
+  asks without the thing they ruled out. If there is one, add it. If there is
+  none, keep the user's choice, because that is their call, and say so in the
+  draft: what the page requires, in its own terms; what it says happens without
+  it; and that the answer departs from it at the user's request. Then send that
+  draft to the next round like any other. Deciding not to change something is
+  not a reason to stop checking.
 - `unresolved`: the check failed or reached its three-round limit. If the
-  reply's `Next:` line says to retry, retry. Otherwise tell the user which
-  findings remain unresolved, and do not present the answer as verified.
+  reply's `Next:` line says to retry, retry. Otherwise deliver the draft you
+  sent in that round word for word, adding only a short note of which findings
+  remain unresolved. Do not reword the rest: those are the last words Recon
+  checked. Do not present the answer as verified.
 
 The citation report is checked against published text. If Recon says a quote
 was not found, fix or remove it and verify the revised draft again. If a
@@ -97,7 +110,7 @@ Before any substantive reply, ask yourself: **Is this exact draft the one I
 sent to `verify_with_recon`, and did it return clean?** If the answer is no,
 call `verify_with_recon` now. Deliver a draft without a clean check only when
 Recon's last reply on it was `unresolved` and did not ask for a retry, and then
-say which findings remain.
+deliver that draft word for word with a short note of which findings remain.
 
 Until a check returns clean, do not tell the user the draft was checked,
 verified or approved. Say what Recon found, or that the check is still going.
